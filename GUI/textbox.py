@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-import sys
 
 class TextBox():
     '''Text box class, simple right now, being worked on'''
