@@ -7,6 +7,7 @@ from GUI.main_ui import MainUI
 START_V = 100
 START_ANG = 45
 
+
 class ProjectileMotionGame:
     def __init__(self):
         pygame.init()
@@ -25,15 +26,8 @@ class ProjectileMotionGame:
         self.ball_x_y = (22, 478)
         self.player = None
         self.hide = False
-        self.running = True
 
-        while self.running:
-            self.draw_gui()
-            self.start()
-
-
-
-
+        self.start()
 
     def rot_center(self, image, angle):
         """rotate an image while keeping its center and size"""
@@ -45,24 +39,25 @@ class ProjectileMotionGame:
         return rot_image
 
     def start(self):
-        #background_img = pygame.image.load('assets/potw1703a.jpg')
-        #player_img = pygame.image.load('assets/player.png')
+        # background_img = pygame.image.load('assets/potw1703a.jpg')
+        # player_img = pygame.image.load('assets/player.png')
         ball_img = pygame.image.load('assets/ball.png')
 
-        #player_img = pygame.transform.rotate(player_img, -15)
-        #player_mov_img = self.rot_center(player_img, shooting_angle)
+        # player_img = pygame.transform.rotate(player_img, -15)
+        # player_mov_img = self.rot_center(player_img, shooting_angle)
 
-        #self.screen.blit(background_img, (0, 0))
-        #self.screen.blit(player_mov_img, player_x_y)
+        # self.screen.blit(background_img, (0, 0))
+        # self.screen.blit(player_mov_img, player_x_y)
         self.screen.blit(ball_img, self.ball_x_y)
 
         self.player = Player(self.fps_count, self.clock, self.screen, ball_img)
-
 
     def draw_gui(self):
         self.clock.tick(self.fps_count)
         self.event_loop()
         self.update()
+        print(self.gui.textboxes['angle'].text)
+        print(self.gui.textboxes['v_0'].text)
         pygame.display.update()
 
     def event_loop(self):
@@ -77,23 +72,23 @@ class ProjectileMotionGame:
             elif event.type == KEYDOWN:
                 if event.key == K_SPACE:
                     v_0 = (velocity * cos(radians(angle)), -velocity * sin(radians(angle)))
-                    print(self.player.shoot(v_0,(22,478)))
+                    print(self.player.shoot(v_0, (22, 478)))
 
         keystate = pygame.key.get_pressed()
 
-        #TODO: Replace ang defnition from textboxes.text
+        # TODO: Replace ang defnition from textboxes.text
 
         if keystate[K_LEFT]:  # rotate conterclockwise
             angle += 2
             if angle > 90:
                 angle = 90
-            #cannonMovImg = self.rot_center(cannonImg, ang)
+            # cannonMovImg = self.rot_center(cannonImg, ang)
 
         if keystate[K_RIGHT]:  # rotate clockwise
             angle -= 2
             if angle < 0:
                 ang = 0
-            #cannonMovImg = rot_center(cannonImg, ang)
+            # cannonMovImg = rot_center(cannonImg, ang)
         pygame.display.flip()
 
     def update(self):
@@ -105,5 +100,5 @@ class ProjectileMotionGame:
 if __name__ == '__main__':
     projectile_motion_game = ProjectileMotionGame()
     while True:
+        projectile_motion_game.draw_gui()
         projectile_motion_game.event_loop()
-

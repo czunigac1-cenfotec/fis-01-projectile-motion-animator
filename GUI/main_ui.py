@@ -14,8 +14,8 @@ class MainUI(Frame):
         self.l2 = Label(self, "Velocidad inicial", position=(90, 10))
         self.t1 = TextBox(self, (250, 10)) #textbox de sl velocidad incial
 
-        self.textboxes = {'Angulo': self.t1,
-                          'Velocidad inicial': self.t2}
+        self.textboxes = {'angle': self.t1,
+                          'v_0': self.t2}
         #ToDO: Create UI elements declaration
         return
 
