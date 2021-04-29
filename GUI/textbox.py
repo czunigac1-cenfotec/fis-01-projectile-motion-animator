@@ -13,7 +13,7 @@ class TextBox():
 
         self.focused = False
 
-        self.image = pygame.Surface((30, 20))
+        self.image = pygame.Surface((90, 25))
         self.outline = pygame.Surface((32, 22))
         self.outline.fill(0)
         self.rect = self.image.get_rect(topleft=self.pos)
