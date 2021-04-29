@@ -17,7 +17,7 @@ class ProjectileMotionGame:
         self.screen = pygame.display.set_mode(self.res, 0, 32)
         pygame.display.set_caption('Projectile motion simulator')
 
-        MainUI(self.screen)
+        self.gui = MainUI(self.screen, self)
 
         self.font = pygame.font.SysFont("Calibri", 16)
 
