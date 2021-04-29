@@ -4,6 +4,7 @@ import pygame
 from projectile_motion.player import Player
 from GUI.main_ui import MainUI
 
+
 START_V = 100
 START_ANG = 45
 
@@ -19,15 +20,17 @@ class ProjectileMotionGame:
         pygame.display.set_caption('Projectile motion simulator')
 
         self.gui = MainUI(self.screen, self)
-
         self.font = pygame.font.SysFont("Calibri", 16)
 
         self.player_x_y = (-5, 450)
         self.ball_x_y = (22, 478)
         self.player = None
+
         self.hide = False
 
         self.start()
+
+        #ToDo: Create main_gui instance
 
     def rot_center(self, image, angle):
         """rotate an image while keeping its center and size"""
@@ -39,15 +42,11 @@ class ProjectileMotionGame:
         return rot_image
 
     def start(self):
-        # background_img = pygame.image.load('assets/potw1703a.jpg')
-        # player_img = pygame.image.load('assets/player.png')
+
+        hoop_img = pygame.image.load('assets/hoop.png')
+        player_img = pygame.image.load('assets/player.png')
         ball_img = pygame.image.load('assets/ball.png')
 
-        # player_img = pygame.transform.rotate(player_img, -15)
-        # player_mov_img = self.rot_center(player_img, shooting_angle)
-
-        # self.screen.blit(background_img, (0, 0))
-        # self.screen.blit(player_mov_img, player_x_y)
         self.screen.blit(ball_img, self.ball_x_y)
 
         self.player = Player(self.fps_count, self.clock, self.screen, ball_img)
@@ -60,13 +59,18 @@ class ProjectileMotionGame:
         print(self.gui.textboxes['v_0'].text)
         pygame.display.update()
 
+    def draw_gui(self):
+        raise NotImplementedError
+
     def event_loop(self):
         angle = START_ANG
         velocity = START_V
 
         for event in pygame.event.get():
+
             if not self.hide:
                 self.gui.check_events(event)
+
             if event.type == QUIT:
                 pygame.quit()
             elif event.type == KEYDOWN:
@@ -82,19 +86,19 @@ class ProjectileMotionGame:
             angle += 2
             if angle > 90:
                 angle = 90
-            # cannonMovImg = self.rot_center(cannonImg, ang)
 
         if keystate[K_RIGHT]:  # rotate clockwise
             angle -= 2
             if angle < 0:
                 ang = 0
-            # cannonMovImg = rot_center(cannonImg, ang)
+
         pygame.display.flip()
 
     def update(self):
         self.screen.fill(0)
         if not self.hide:
             self.gui.update()
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
@@ -102,3 +106,5 @@ if __name__ == '__main__':
     while True:
         projectile_motion_game.draw_gui()
         projectile_motion_game.event_loop()
+
+
