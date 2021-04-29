@@ -24,9 +24,16 @@ class ProjectileMotionGame:
         self.player_x_y = (-5, 450)
         self.ball_x_y = (22, 478)
         self.player = None
-        self.start()
+        self.hide = False
+        self.running = True
 
-        #ToDo: Create main_gui instance
+        while self.running:
+            self.draw_gui()
+            self.start()
+
+
+
+
 
     def rot_center(self, image, angle):
         """rotate an image while keeping its center and size"""
@@ -53,13 +60,18 @@ class ProjectileMotionGame:
 
 
     def draw_gui(self):
-        raise NotImplementedError
+        self.clock.tick(self.fps_count)
+        self.event_loop()
+        self.update()
+        pygame.display.update()
 
     def event_loop(self):
         angle = START_ANG
         velocity = START_V
 
         for event in pygame.event.get():
+            if not self.hide:
+                self.gui.check_events(event)
             if event.type == QUIT:
                 pygame.quit()
             elif event.type == KEYDOWN:
@@ -83,6 +95,11 @@ class ProjectileMotionGame:
                 ang = 0
             #cannonMovImg = rot_center(cannonImg, ang)
         pygame.display.flip()
+
+    def update(self):
+        self.screen.fill(0)
+        if not self.hide:
+            self.gui.update()
 
 
 if __name__ == '__main__':
