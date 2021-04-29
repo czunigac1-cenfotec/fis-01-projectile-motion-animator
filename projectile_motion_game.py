@@ -2,6 +2,7 @@ from pygame.locals import *
 from math import *
 import pygame
 from projectile_motion.player import Player
+from GUI.main_ui import MainUI
 
 START_V = 100
 START_ANG = 45
@@ -15,6 +16,8 @@ class ProjectileMotionGame:
         self.fps_count = 60
         self.screen = pygame.display.set_mode(self.res, 0, 32)
         pygame.display.set_caption('Projectile motion simulator')
+
+        MainUI(self.screen)
 
         self.font = pygame.font.SysFont("Calibri", 16)
 
