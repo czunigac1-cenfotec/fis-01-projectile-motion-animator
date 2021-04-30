@@ -3,7 +3,6 @@
 Este proyecto permite visualizar una animación de las ecuaciones que describen el movimiento parabólico.
 
 Para empezar a utilizarlo, se deben seguir los siguientes pasos:
-- test
-- test
+- Correr `pip install -r requirements.txt` en consola.
+- Correr `projectile_motion_game.py`
 
-https://github.com/CCareaga/Pygame-Examples

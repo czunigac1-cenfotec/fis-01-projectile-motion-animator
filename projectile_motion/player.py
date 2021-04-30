@@ -38,7 +38,6 @@ class Player:
 
             self.screen.blit(self.ball_img, s)
 
-            # TODO: Change this coordinate to the actual floor of the simulator
             if s[1] >= 720:
                 final_values['final_velocity'] = sqrt(v[0]*v[0] + v[1]*v[1])
                 final_values['v_x'] = v[0]
