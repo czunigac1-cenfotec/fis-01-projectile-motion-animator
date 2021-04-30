@@ -5,6 +5,7 @@ import sys
 
 class Label():
     '''Basic label class'''
+
     def __init__(self, frame, text, **kwargs):
 
         self.frame = frame
@@ -15,10 +16,11 @@ class Label():
         self.frame.widgets.append(self)
 
     def process_kwargs(self, kwargs):
-        defaults = { "font" : pygame.font.SysFont("Calibri", 17),
-                    "color" : pygame.Color("white"),
-                    "position" : (0, 0)
-                    }
+        defaults = {
+            "font": pygame.font.SysFont("Calibri", 20),
+            "color": pygame.Color("white"),
+            "position": (0, 0)
+        }
 
         for kwarg in kwargs:
             if kwarg in defaults:

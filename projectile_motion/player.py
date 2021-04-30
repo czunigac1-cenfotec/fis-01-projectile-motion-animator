@@ -3,11 +3,12 @@ from math import *
 
 
 class Player:
-    def __init__(self, fps_count, fps_clock, screen, ball_img):
+    def __init__(self, fps_count, fps_clock, screen, sprites):
         self.fps_count = fps_count  # frames per second setting
         self.fps_clock = fps_clock
         self.screen = screen
-        self.ball_img = ball_img
+        self.sprites = sprites
+        self.ball_img = sprites.get('ball').get('img')
 
     def shoot(self, v_0, ball_0):
         final_values = {
@@ -29,10 +30,16 @@ class Player:
             v = (v_0[0] + a[0] * t, v_0[1] + a[1] * t)
             s_0 = ball_0
             s = (s_0[0] + v_0[0] * t + a[0] * t * t / 2, s_0[1] + v_0[1] * t + a[1] * t * t / 2)
-            self.screen.blit(self.ball_img, s)
             pygame.display.flip()
+            for sprite in self.sprites:
+                if sprite != 'ball':
+                    current_sprite = self.sprites.get(sprite)
+                    self.screen.blit(current_sprite.get('img'), current_sprite.get('x_y'))
+
+            self.screen.blit(self.ball_img, s)
+
             # TODO: Change this coordinate to the actual floor of the simulator
-            if s[1] >= 486:
+            if s[1] >= 720:
                 final_values['final_velocity'] = sqrt(v[0]*v[0] + v[1]*v[1])
                 final_values['v_x'] = v[0]
                 final_values['v_y'] = v[1]
