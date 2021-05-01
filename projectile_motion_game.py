@@ -13,7 +13,7 @@ class ProjectileMotionGame:
         pygame.init()
         self.font = pygame.font.SysFont("Calibri", 20)
         self.clock = pygame.time.Clock()
-        self.res = (1280, 720)
+        self.res = (1270, 720)
         self.fps_count = 60
         self.screen = pygame.display.set_mode(self.res, 0, 32)
         pygame.display.set_caption('Projectile motion simulator')
@@ -22,7 +22,7 @@ class ProjectileMotionGame:
         self.sprites = {
             'background': {
                 'x_y': (0, 0),
-                'img': pygame.image.load('assets/background.png')
+                'img': pygame.image.load('assets/bosque1.jpg')
             },
             'hoop': {
                 'x_y': (950, 140),
@@ -62,32 +62,32 @@ class ProjectileMotionGame:
     def draw_text(self):
         text_v_f = self.font.render(f"Velocidad final: {self.shot_data.get('final_velocity'):.3f}",
                                     True,
-                                    pygame.Color('white'))
+                                    pygame.Color('black'))
         text_v_f_x_y = (800, 30)
 
         text_v_x = self.font.render(f"Velocidad en eje x: {self.shot_data.get('v_x'):.3f}",
                                     True,
-                                    pygame.Color('white'))
+                                    pygame.Color('black'))
         text_v_x_x_y = (800, 50)
 
         text_v_y = self.font.render(f"Velocidad en eje y: {self.shot_data.get('v_y'):.3f}",
                                     True,
-                                    pygame.Color('white'))
+                                    pygame.Color('black'))
         text_v_y_x_y = (800, 70)
 
         text_d = self.font.render(f"Distancia recorrida: {self.shot_data.get('x_max'):.3f}",
                                   True,
-                                  pygame.Color('white'))
+                                  pygame.Color('black'))
         text_d_x_y = (800, 90)
 
         text_h = self.font.render(f"Altura: {self.shot_data.get('y_max'):.3f}",
                                   True,
-                                  pygame.Color('white'))
+                                  pygame.Color('black'))
         text_h_x_y = (800, 110)
 
         text_t = self.font.render(f"Tiempo: {self.shot_data.get('t'):.3f}",
                                   True,
-                                  pygame.Color('white'))
+                                  pygame.Color('black'))
         text_t_x_y = (800, 130)
 
         self.screen.blit(text_v_f, text_v_f_x_y)
